@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.livestream.ui.home.HomeFragment"
+        android:label="Livestream"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_stream"
+            app:destination="@id/navigation_stream" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_stream"
+        android:name="com.example.livestream.ui.stream.StreamFragment"
+        android:label="Stream"
+        tools:layout="@layout/fragment_stream" />
+
+    <fragment
+        android:id="@+id/navigation_streamers"
+        android:name="com.example.livestream.ui.streamers.StreamersFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_streamers" />
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.example.livestream.ui.account.LoginFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_navigation_login_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.livestream.ui.account.ProfileFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_login"
+            app:destination="@id/navigation_account" />
+    </fragment>
+</navigation>

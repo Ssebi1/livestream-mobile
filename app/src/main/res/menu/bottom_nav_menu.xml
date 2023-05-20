@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/stream_48"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_streamers"
+        android:icon="@drawable/streamers_48"
+        android:title="@string/title_dashboard" />
+
+    <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/account_48"
+        android:title="@string/title_account" />
+</menu>
