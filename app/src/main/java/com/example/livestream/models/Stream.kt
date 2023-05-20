@@ -1,5 +1,6 @@
 package com.example.livestream.models
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
@@ -21,11 +22,21 @@ data class Stream(
     val vod_recording_hls_url: String? = null,
     val vod_duration: String? = null,
 
-//    val user: User? = User()
+    @Embedded(prefix = "user_")
+    val user: User? = User(),
+
+    @Embedded(prefix = "category_")
+    val category: Category? = Category()
 ) {
     @Ignore
     constructor() : this(
         "",
-        ""
+        "",
+        "",
+        "",
+        "",
+        "",
+        User(),
+        Category()
     )
 }

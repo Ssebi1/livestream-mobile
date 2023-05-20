@@ -1,12 +1,12 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 2,
-    "identityHash": "71cbc84ec8466fb092863848d5ce0901",
+    "version": 3,
+    "identityHash": "2f0cda9115009110d3226e88a96bbae5",
     "entities": [
       {
         "tableName": "Stream",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT, `status` TEXT, `hls_url` TEXT, `vod_recording_hls_url` TEXT, `vod_duration` TEXT, `userid` TEXT, `useremail` TEXT, `username` TEXT, `userpassword` TEXT, `userprofilePicture` TEXT, `userfollowersNr` INTEGER, `userloggedIn` INTEGER, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT, `status` TEXT, `hls_url` TEXT, `vod_recording_hls_url` TEXT, `vod_duration` TEXT, `userid` TEXT, `useremail` TEXT, `username` TEXT, `userpassword` TEXT, `userprofilePicture` TEXT, `userfollowersNr` INTEGER, `userloggedIn` INTEGER, `categoryid` TEXT, `categoryimage_path` TEXT, `categoryname` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -85,6 +85,24 @@
             "columnName": "userloggedIn",
             "affinity": "INTEGER",
             "notNull": false
+          },
+          {
+            "fieldPath": "category.id",
+            "columnName": "categoryid",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "category.image_path",
+            "columnName": "categoryimage_path",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "category.name",
+            "columnName": "categoryname",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -156,7 +174,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '71cbc84ec8466fb092863848d5ce0901')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2f0cda9115009110d3226e88a96bbae5')"
     ]
   }
 }

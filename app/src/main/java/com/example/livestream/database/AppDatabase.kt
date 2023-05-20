@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.livestream.models.Stream
 import com.example.livestream.models.User
 
-@Database(entities = [Stream::class, User::class], version = 2)
+@Database(entities = [Stream::class, User::class], version = 4)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun streamDao(): StreamDao

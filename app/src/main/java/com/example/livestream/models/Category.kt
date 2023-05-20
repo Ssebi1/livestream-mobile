@@ -1,11 +1,13 @@
 package com.example.livestream.models
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-@Parcelize
+@Entity
 data class Category(
     @PrimaryKey
     @SerializedName("_id")
@@ -13,6 +15,11 @@ data class Category(
 
     val image_path: String,
     val name: String,
-) : Parcelable {
-
+)   {
+    @Ignore
+    constructor() : this(
+        "",
+        "",
+        "",
+    )
 }

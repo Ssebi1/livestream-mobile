@@ -15,6 +15,7 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -44,8 +45,7 @@ class StreamFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         stream_id = arguments?.getString("stream_id") ?: ""
-        stream_title = arguments?.getString("title") ?: ""
-        binding!!.titleTextView.text = stream_title
+        Picasso.get().load("https://leven-tv.com/profile-pictures/" + streamViewModel.stream?.user?.id + ".png").into(binding?.imageView);
         preparePlayer(arguments?.getString("vod_recording_hls_url") ?: "none")
     }
 

@@ -53,6 +53,8 @@ class StreamsListAdapter constructor(
 
         fun bind(position: Int) {
             binding.titleTextView.text = streams[position].title
+            binding.titleTextView2.text = streams[position].user?.name
+            binding.titleTextView3.text = streams[position].category?.name
             if (streams[position].status == "ended") {
                 binding.durationTextView.text = streams[position].vod_duration
             } else if (streams[position].status == "started") {
