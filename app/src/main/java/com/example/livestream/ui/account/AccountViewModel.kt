@@ -7,6 +7,8 @@ import com.example.livestream.ui.viewmodel.BaseViewModel
 import com.example.livestream.ui.viewmodel.SingleChannelEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import okhttp3.RequestBody
+import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
@@ -57,6 +59,12 @@ class AccountViewModel @Inject constructor(
         executeIO {
             userRepository.logoutUser()
             logoutSuccess.trySend(Any())
+        }
+    }
+
+    fun uploadImage(body: RequestBody) {
+        executeIO {
+            userRepository.uploadImage(body)
         }
     }
 }

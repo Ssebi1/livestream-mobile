@@ -2,6 +2,7 @@ package com.example.livestream.request
 
 import com.example.livestream.models.Stream
 import com.example.livestream.models.User
+import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ApiService {
@@ -17,4 +18,7 @@ interface ApiService {
     @POST("users/login")
     @FormUrlEncoded
     suspend fun login(@FieldMap params: HashMap<String, Any?>): User
+
+    @POST("users/upload/profile-picture")
+    suspend fun uploadImage(@Body body: RequestBody)
 }

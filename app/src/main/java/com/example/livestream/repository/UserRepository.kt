@@ -4,6 +4,8 @@ import com.example.livestream.database.StreamDao
 import com.example.livestream.database.UserDao
 import com.example.livestream.models.User
 import com.example.livestream.request.ApiService
+import okhttp3.RequestBody
+import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -22,4 +24,6 @@ class UserRepository @Inject constructor(
     suspend fun getCurrentyleLoggedUser() = userDao.getCurrentlyLoggedUser()
 
     suspend fun logoutUser() = userDao.logoutUser()
+
+    suspend fun uploadImage(body: RequestBody) = apiService.uploadImage(body)
 }
