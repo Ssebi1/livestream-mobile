@@ -21,6 +21,7 @@ data class Stream(
     val hls_url: String? = null,
     val vod_recording_hls_url: String? = null,
     val vod_duration: String? = null,
+    val thumbnail_url: String? = null,
 
     @Embedded(prefix = "user_")
     val user: User? = User(),
@@ -30,6 +31,7 @@ data class Stream(
 ) {
     @Ignore
     constructor() : this(
+        "",
         "",
         "",
         "",

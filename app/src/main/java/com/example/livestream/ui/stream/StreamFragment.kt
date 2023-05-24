@@ -1,5 +1,6 @@
 package com.example.livestream.ui.stream
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,8 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.livestream.R
 import com.example.livestream.databinding.FragmentStreamBinding
 import com.example.livestream.ui.viewmodel.launchAndCollect
 import com.example.livestream.ui.viewmodel.observeOnLifecycle
@@ -20,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class StreamFragment : Fragment() {
+class StreamFragment : Fragment(), View.OnClickListener {
 
     private val streamViewModel: StreamViewModel by viewModels()
     private var binding: FragmentStreamBinding? by viewLifecycle()
@@ -29,7 +32,6 @@ class StreamFragment : Fragment() {
     private var playbackPosition = 0L
     private var playWhenReady = true
     var stream_id: String = ""
-    var stream_title: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +46,11 @@ class StreamFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        observeOnLifecycle {
+            binding?.apply {
+                shareButton.setOnClickListener(this@StreamFragment)
+            }
+        }
         stream_id = arguments?.getString("stream_id") ?: ""
         Picasso.get().load("https://leven-tv.com/profile-pictures/" + streamViewModel.stream?.user?.id + ".png").into(binding?.imageView);
         preparePlayer(arguments?.getString("vod_recording_hls_url") ?: "none")
@@ -92,5 +99,21 @@ class StreamFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    override fun onClick(view: View?) {
+        when (view?.id) {
+            R.id.shareButton -> share()
+        }
+    }
+
+    private fun share() {
+        val shareIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, "Vizioneaza si tu acest stream: https://leven-tv.com/stream/" + streamViewModel.stream?.id)
+            type = "text/plain"
+        }
+
+        startActivity(Intent.createChooser(shareIntent, null))
     }
 }
